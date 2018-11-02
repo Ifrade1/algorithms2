@@ -1,20 +1,21 @@
 # algorithms
 
-Current Priorities:
+**_Current Priorities: _***
 
-Write insert function
+Write insert function <b/>
+
 Write main function
 
 
-Things to do:
+**things to do:**
 
-  *Create main function file
+ * Create main function file
   
-  *In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else spit out error for that line. 
+  * In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else spit out error for that line.
   
-   *Create 1 file for all functions: insert, delete, search, min, max, predecessor, successor
-   
-   *Write Makefile!!!!! 
+  * Create 1 file for all functions: insert, delete, search, min, max, predecessor, successor
+  
+  * Write Makefile!!!!! 
 
 
 Insert function: if head points to null, then assign that leaf to header. 
@@ -39,12 +40,19 @@ For the purposes of our project, the height of an empty tree will be -1.
 Your program should be able to parse input provided in the standard input, each line of which performs one dictionary operation. Each line has one directive and potentially one key (dependent on the operation), separated by a single space character. You can assume that the input has no errors. The directives are:
 
 INS: Insertion
+
 DEL: Deletion
+
 SEA: Search
+
 MIN: Minimum
+
 MAX: Maximum
+
 PRE: Predecessor
+
 SUC: Successor
+
 HEI: Tree height
 
 Example input file:
