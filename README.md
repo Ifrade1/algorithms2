@@ -2,23 +2,23 @@
 
 **_Current Priorities: _***
 
-Write insert function
+Write code to set up leafs of the tree. must include *left, *right, *repeat. 
 
-Write main function
+Write insert function (Write it in the bstfunctions file.
+
+Write main function (write it in the PA1 file).
 
 
 **things to do:**
+  
+  * In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else 
+ 
+spit out error for that line.
 
- * Create main function file
-  
-  * In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else spit out error for that line.
-  
-  * Create 1 file for all functions: insert, delete, search, min, max, predecessor, successor
-  
-  * Write Makefile!!!!! 
+* Write Makefile!!!!! 
 
 
-Insert function: if head points to null, then assign that leaf to header. 
+Insert function: if head points to null, then assign that leaf to header. else run a "search" a.e. finding where it either drops off or finds an identical value. 
 
 __________________________________________________________________________________
 Create an implementation of a binary search tree in C that allows for non-unique non-negative integer keys. Your tree will only store keys, no associated data.
