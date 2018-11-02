@@ -2,7 +2,7 @@
 
 **_Current Priorities: _***
 
-Write insert function <b/>
+Write insert function
 
 Write main function
 
