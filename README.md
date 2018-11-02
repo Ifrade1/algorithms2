@@ -11,8 +11,9 @@
    *Write Makefile!!!!! 
 
 
-Insert function: if head points to null, then assign that leaf to header. else, if 
- wwwwwwwwwwwwwwwwwwwwwwww
+Insert function: if head points to null, then assign that leaf to header. 
+
+__________________________________________________________________________________
 Create an implementation of a binary search tree in C that allows for non-unique non-negative integer keys. Your tree will only store keys, no associated data.
 
 Implement all 7 dictionary operations:
