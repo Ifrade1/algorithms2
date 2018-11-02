@@ -1,12 +1,18 @@
-# algorithms2
+# algorithms
 
-#Things to do:
+Current Priorities:
+
+Write insert function
+Write main function
+
+
+Things to do:
 
   *Create main function file
   
   *In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else spit out error for that line. 
   
-   *Create file for insert, delete, search, min max.
+   *Create 1 file for all functions: insert, delete, search, min, max, predecessor, successor
    
    *Write Makefile!!!!! 
 
