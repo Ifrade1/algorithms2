@@ -1,5 +1,14 @@
 # algorithms2
 
+#Things to do:
+  Create main function file
+     In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else spit out error for that line. 
+   Create file for insert, delete, search, min max. 
+   Write Makefile!!!!! 
+
+
+Insert function: if head points to null, then assign that leaf to header. else, if 
+ wwwwwwwwwwwwwwwwwwwwwwww
 Create an implementation of a binary search tree in C that allows for non-unique non-negative integer keys. Your tree will only store keys, no associated data.
 
 Implement all 7 dictionary operations:
