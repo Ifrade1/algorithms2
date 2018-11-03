@@ -53,6 +53,18 @@ return tree;
     return (max->val);
 }
 
+struct Tree * search(struct Tree * leaf, int item) {
+    if (leaf == NULL) {
+        return NULL;
+    }
+    else if (leaf->val == item) {
+        return leaf;
+    }
+    else if (leaf->val > item) {
+        return search(leaf->left_child, item);
+    }
+    return search(leaf->right_child, item);
+}
 
 int main() {
      int n; //this is the number that has to be saved into the tree
@@ -77,19 +89,26 @@ int main() {
                         printf("%d", n, "/n");
                     }
             }
-            else if ((strcmp(str1,"DEL")) == 0){}
-           else if ((strcmp(str1,"SEA")) == 0){}
-           else if ((strcmp(str1,"MIN")) == 0){
+            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){}
+           else if (res == 2 &&(strcmp(str1,"SEA")) == 0){
+                if (search(root, n)== NULL){
+                   printf("%d", 0, "/n");
+                }
+                else if (search(root, n) != NULL){
+                     printf("%d", 1, "/n");
+                }
+           }
+           else if (res == 1 &&(strcmp(str1,"MIN")) == 0){
                min = minimum(root);
                 printf("%d", min);
            }
-           else if ((strcmp(str1,"MAX")) == 0){
+           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
                 max = maximum(root);
-                printf("%d", max);
+                printf("%d", max, "/n");
            }
-           else if ((strcmp(str1,"PRE")) == 0){}
-           else if ((strcmp(str1,"SUC")) == 0){}
-           else if ((strcmp(str1,"HEI")) == 0){}
+           else if (res == 2 &&(strcmp(str1,"PRE")) == 0){}
+           else if (res == 2 &&(strcmp(str1,"SUC")) == 0){}
+           else if (res == 1 &(strcmp(str1,"HEI")) == 0){}
     }
     }
      return 0;
