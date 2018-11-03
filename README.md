@@ -4,15 +4,13 @@
 
 -Write delete function (Write it in the bstfunctions file.
 
--Write search function
-
 -Write predecessor function
 
 -Write successor function
 
 -Write Height function
 
--delete bstfunction file. Kinda unnecessary
+-delete bstfunction file. Kinda unnecessary now
 
 *add else if invalid input (a.e. FIN), spits out error
 
