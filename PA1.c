@@ -1,7 +1,7 @@
 //This is the main file.
 #include <stdio.h>
 #include<string.h>
-
+#include <PA1.h>
 int main() {
      int n; //this is the number that has to be saved into the tree
      char str1[50];

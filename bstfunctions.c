@@ -2,6 +2,7 @@
 //set the tree up
 #include<stdio.h>
 #include<stdlib.h>
+#include<PA1.h>
 struct Tree
 {
     int val;
