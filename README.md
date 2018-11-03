@@ -1,6 +1,6 @@
 # algorithms
 
-**_Current Priorities: _***
+**_Current Priorities: _**
 Write delete function (Write it in the bstfunctions file.
 
 -Write search function
@@ -17,7 +17,7 @@ Write delete function (Write it in the bstfunctions file.
 
 * Write Makefile!!!!! 
 
-**Bonus:Add traversal function, for testing. **
+**Bonus:Add traversal function, for testing.**
 
 __________________________________________________________________________________
 Create an implementation of a binary search tree in C that allows for non-unique non-negative integer keys. Your tree will only store keys, no associated data.
