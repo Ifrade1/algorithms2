@@ -1,22 +1,71 @@
 //This is the main file.
 #include <stdio.h>
+#include<stdlib.h>
 #include<string.h>
-#include <PA1.h>
+struct Tree
+{
+    int val;
+    struct Tree *left_child, *right_child, *parent, *ide_val; //ide_val is pointer list to values identical to it
+};
+//insert
+struct Tree *newLeaf(int x){
+        struct Tree *tempy =  malloc(sizeof(struct Tree));
+    tempy->val = x;
+    tempy->left_child = NULL;
+    tempy->right_child = NULL;
+    tempy->parent = NULL;
+    tempy->ide_val = NULL;
+    return tempy;
+}
+struct tree* insert(struct Tree **tree, int item, struct Tree *parent){
+  struct Tree *temp;
+    /* If the tree is empty, return a new Node */
+if (*tree == NULL){
+   temp = malloc(sizeof(tree));
+    temp->val = item;
+    temp->left_child = NULL;
+    temp->right_child = NULL;
+    temp->parent = parent;
+    temp->ide_val = NULL;
+    *tree = temp;
+}
+    /* Otherwise, recur down the tree */
+ else if(item == (*tree)->val){
+	(*tree)->ide_val = newLeaf(item);
+ }
+else if (item < (*tree)->val)
+    {
+        insert(&((*tree)->left_child), item, *tree);
+    }
+    else if (item > (*tree)->val)
+    {
+        insert(&((*tree)->right_child), item, *tree);
+    }
+ }
+
 int main() {
      int n; //this is the number that has to be saved into the tree
      char str1[50];
-     while(scanf("%s",str1, "%d", &n) !=EOF){ //scans until end of file
-            /*if str1 = INS
-            else if str1 == DEL
-            else if str1 == SEA
-            else if str1 == MIN
-            else if str1 == MAX
-            else if str1 == PRE
-            else if str1 == SUC
-            else if str1 == HEI
-            else { if str == anything else, spit out error
-                */
-    return 0;
+    struct Tree *root = NULL;
+     while(scanf("%s", str1, "%d", &n) !=EOF){ //scans until end of file
+            if ((strcmp(str1,"INS")) != 0){
+                  if (root == NULL){
+                        insert(&root, n, root);
+                  }
+                  else {
+                        insert(&root, n, root);
+                        }
+                printf("You entered: %d", n);
+            }
+            else if ((strcmp(str1,"DEL")) != 0)){}
+           else if ((strcmp(str1,"SEA")) != 0)){}
+           else if ((strcmp(str1,"MIN")) != 0)){}
+           else if ((strcmp(str1,"MAX")) != 0)){}
+           else if ((strcmp(str1,"PRE")) != 0)){}
+           else if ((strcmp(str1,"SUC")) != 0)){}
+           else if ((strcmp(str1,"HEI")) != 0)){}
+
     }
+     return 0;
 }
 
