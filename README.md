@@ -1,10 +1,9 @@
 # algorithms
 
 **_Current Priorities: _***
+Write delete function (Write it in the bstfunctions file.
 
-Write code to set up leafs of the tree. must include *left, *right, *repeat. 
-
-Write insert function (Write it in the bstfunctions file.
+Write search function
 
 Write main function (write it in the PA1 file).
 
