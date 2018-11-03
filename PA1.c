@@ -5,7 +5,7 @@
 struct Tree
 {
     int val;
-    struct Tree *left_child, *right_child, *parent, *ide_val; //ide_val is pointer list to values identical to it
+    struct Tree *left_child, *right_child,*ide_val; //ide_val is pointer list to values identical to it
 };
 //insert
 struct Tree *newLeaf(int x){
@@ -13,7 +13,6 @@ struct Tree *newLeaf(int x){
     tempy->val = x;
     tempy->left_child = NULL;
     tempy->right_child = NULL;
-    tempy->parent = NULL;
     tempy->ide_val = NULL;
     return tempy;
 }
@@ -21,12 +20,7 @@ struct Tree* insert(struct Tree *tree, int item){
   struct Tree *temp;
     /* If the tree is empty, return a new Node */
 if (tree == NULL){
-   temp = malloc(sizeof(tree));
-    temp->val = item;
-    temp->left_child = NULL;
-    temp->right_child = NULL;
-    temp->ide_val = NULL;
-    tree = temp;
+   return newLeaf(item);
 }
     /* Otherwise, recur down the tree */
  else if(item == (tree)->val){
@@ -40,31 +34,63 @@ else if (item < tree->val)
     {
     tree->right_child = insert(tree->right_child, item);
     }
+return tree;
+ };
+ int minimum(struct Tree *tree){
+    struct Tree *min = tree;
+    if (min == NULL) return -1;
+    while(min->left_child != NULL){
+        min = min->left_child;
+    }
+    return (min->val);
+}
+ int maximum(struct Tree *tree){
+    struct Tree *max = tree;
+    if (max == NULL) return -1;
+    while(max->right_child != NULL){
+        max = max->right_child;
+    }
+    return (max->val);
+}
 
- }
 
 int main() {
      int n; //this is the number that has to be saved into the tree
+     int min;
+     int max;
      char str1[50];
     struct Tree *root = NULL;
-     while(scanf("%s %d", str1, &n) !=EOF){ //scans until end of file
-            if ((strcmp(str1,"INS")) != 0){
+     int res;
+     int err;
+    char input[100];
+    while(1) {
+        err = 0;
+        if(fgets(input, sizeof input, stdin) != NULL) {
+            res = sscanf(input, "%19s%d%d%d", str1, &n);
+            if (res == 2 &&(strcmp(str1,"INS")) == 0){
                     if (root == NULL){
-                        root = insert(root, 50);
+                        root = insert(root, n);
+                        printf("%d", n, "/n");
                     }
-                    else{
+                    else if (root!= NULL){
                         insert(root, n);
+                        printf("%d", n, "/n");
                     }
-                printf("%d", n);
             }
-            else if ((strcmp(str1,"DEL")) != 0){}
-           else if ((strcmp(str1,"SEA")) != 0){}
-           else if ((strcmp(str1,"MIN")) != 0){}
-           else if ((strcmp(str1,"MAX")) != 0){}
-           else if ((strcmp(str1,"PRE")) != 0){}
-           else if ((strcmp(str1,"SUC")) != 0){}
-           else if ((strcmp(str1,"HEI")) != 0){}
-
+            else if ((strcmp(str1,"DEL")) == 0){}
+           else if ((strcmp(str1,"SEA")) == 0){}
+           else if ((strcmp(str1,"MIN")) == 0){
+               min = minimum(root);
+                printf("%d", min);
+           }
+           else if ((strcmp(str1,"MAX")) == 0){
+                max = maximum(root);
+                printf("%d", max);
+           }
+           else if ((strcmp(str1,"PRE")) == 0){}
+           else if ((strcmp(str1,"SUC")) == 0){}
+           else if ((strcmp(str1,"HEI")) == 0){}
+    }
     }
      return 0;
 }
