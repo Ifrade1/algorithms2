@@ -3,21 +3,21 @@
 **_Current Priorities: _***
 Write delete function (Write it in the bstfunctions file.
 
-Write search function
+-Write search function
 
-Write main function (write it in the PA1 file).
+-Write predecessor function
 
+-Write successor function
 
-**things to do:**
-  
-  * In main function, write a loop that scans in input, if string = command then excecute the command, else check next command, else 
- 
-spit out error for that line.
+-Write Height function
+
+-delete bstfunction file. Kinda unnecessary
+
+*add else if invalid input (a.e. FIN), spits out error
 
 * Write Makefile!!!!! 
 
-
-Insert function: if head points to null, then assign that leaf to header. else run a "search" a.e. finding where it either drops off or finds an identical value. 
+**Bonus:Add traversal function, for testing. **
 
 __________________________________________________________________________________
 Create an implementation of a binary search tree in C that allows for non-unique non-negative integer keys. Your tree will only store keys, no associated data.
