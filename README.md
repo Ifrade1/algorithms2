@@ -1,7 +1,8 @@
 # algorithms
 
 **_Current Priorities: _**
-Write delete function (Write it in the bstfunctions file.
+
+-Write delete function (Write it in the bstfunctions file.
 
 -Write search function
 
