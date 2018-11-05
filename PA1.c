@@ -23,8 +23,11 @@ if (tree == NULL){
    return newLeaf(item);
 }
     /* Otherwise, recur down the tree */
- else if(item == (tree)->val){
-	tree->ide_val = newLeaf(item);
+  else if(item == (tree->val)){
+            while (tree->ide_val != NULL) {
+            tree = tree->ide_val;
+            }
+             tree->ide_val = newLeaf(item);
  }
 else if (item < tree->val)
     {
