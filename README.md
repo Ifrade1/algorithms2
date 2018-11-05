@@ -2,10 +2,8 @@
 
 **_Current Priorities: _**
 
--Fix delete function
-  rename remove. This is actually causing isssues. rename it to deletey or something.
-  remove has to look at ide_vals. delete this the saem way one would delete a linked list.
-  remove has to spit out # of nodes removed. not a big deal, but if it has to delete all the times it goes through a linked list, this gets annoying. 
+-Delete:
+  -take advantage of ->parent. Go to parent, figure out if the deleted value is left or right, and then replace it properly. 
 
 -Write predecessor function
 
