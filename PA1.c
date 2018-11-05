@@ -99,7 +99,7 @@ struct Tree * search(struct Tree * leaf, int item) {
 }
 
 //successor function
-struct Tree * succ(struct Tree *root, struct Tree *succ){
+int succ(struct Tree *root, struct Tree *succ){
 	if(succ->right_child != NULL)//successor is the node with the minimum key value in right subtree
 		return minimum(succ->right_child);
 	struct Tree *temp= succ->ide_val;
@@ -111,6 +111,7 @@ struct Tree * succ(struct Tree *root, struct Tree *succ){
 }
 
 //predecessor function
+//Note: Implement this like the min functions, as 
 struct Tree * pred(struct Tree *tree, int item){
 	if(tree == NULL) return tree;//base case
 	if(tree->val == item){ 
