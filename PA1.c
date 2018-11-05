@@ -17,18 +17,17 @@ struct Tree *newLeaf(int x){
     return tempy;
 }
 struct Tree* insert(struct Tree *tree, int item){
-  struct Tree *temp;
     /* If the tree is empty, return a new Node */
 if (tree == NULL){
-   return newLeaf(item);
-}
+  return newLeaf(item);
+ }
     /* Otherwise, recur down the tree */
   else if(item == (tree->val)){
             while (tree->ide_val != NULL) {
             tree = tree->ide_val;
             }
              tree->ide_val = newLeaf(item);
- }
+  }
 else if (item < tree->val)
     {
     tree->left_child  = insert(tree->left_child, item);
@@ -38,7 +37,7 @@ else if (item < tree->val)
     tree->right_child = insert(tree->right_child, item);
     }
 return tree;
- };
+}
 //delete
 struct Tree* remove(struct Tree *tree, int item){
 	if (tree == NULL) return tree;//if the root is empty, return the root
@@ -117,6 +116,7 @@ int main() {
                         insert(root, n);
                         printf("%d\n", n);
                     }
+      [-Wformat-extra-args]
             }
             else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){ 
                   if(root == NULL){
