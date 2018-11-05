@@ -115,7 +115,16 @@ int main() {
                         printf("%d", n, "/n");
                     }
             }
-            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){}
+            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){ 
+                  if(root == NULL){
+			  root = remove(root, n);
+			  printf("%d", 0, "/n");
+		  }
+		    else if(root != NULL){
+			    root = remove(root, n);
+			     printf("%d", n, "/n");
+		    }
+	    }
            else if (res == 2 &&(strcmp(str1,"SEA")) == 0){
                 if (search(root, n)== NULL){
                    printf("%d", 0, "/n");
