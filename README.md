@@ -2,7 +2,7 @@
 
 **_Current Priorities: _**
 
--Write delete function (Write it in the bstfunctions file.
+-Fix delete function
 
 -Write predecessor function
 
