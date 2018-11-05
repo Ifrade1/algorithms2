@@ -39,28 +39,32 @@ else if (item < tree->val)
 return tree;
 }
 //delete
-struct Tree* remove(struct Tree *tree, int item){
+struct Tree* deletey(struct Tree *tree, int item){
 	if (tree == NULL) return tree;//if the root is empty, return the root
 	if(item < tree->val){
-		tree->left_child = remove(tree->left_child, item);//key is in the left subtree
+		tree->left_child = deletey(tree->left_child, item);//key is in the left subtree
 	}
 	else if(item > tree->val){
-		tree->right_child = remove(tree->right_child, item);//key is in right subtree	
+		tree->right_child = deletey(tree->right_child, item);//key is in right subtree	
 	}
 	else{//nodes have the same key
-		if(root->left_child == NULL){//node has 0 children or 1 child
+		if(tree->left_child == NULL){//node has 0 children or 1 child
 			struct Tree *temp = tree->right_child;
 			free(tree);
 			return temp;	
 		}
-		else if(root->right_child == NULL){
+		else if(tree->right_child == NULL){
 		struct Tree *temp = tree->left_child;
 			free(tree);
 			return temp;
 		}
-		struct Tree *temp = minimum(tree->right_child);//get smallest node in right subtree
-		tree->val = temp->val;//copies contents to current node
-		tree->right = remove(tree->right_child, temp->val);//deletes node
+		struct Tree *min = tree;//get smallest node in right subtree
+		if(min == NULL) return -1;
+		while(min->right_child != NULL){
+			min = min->right_child;
+		}
+		tree->val = min->val;//copies contents to current node
+		tree->right = deletey(tree->right_child, min->val);//deletes node
 	}
  return tree;
 }//end of delete
@@ -94,6 +98,7 @@ struct Tree * search(struct Tree * leaf, int item) {
     return search(leaf->right_child, item);
 }
 
+struct Tree * succ(struct Tree
 int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
@@ -116,7 +121,6 @@ int main() {
                         insert(root, n);
                         printf("%d\n", n);
                     }
-      [-Wformat-extra-args]
             }
             else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){ 
                   if(root == NULL){
@@ -124,7 +128,7 @@ int main() {
 			  printf("%d\n", 0);
 		  }
 		    else if(root != NULL){
-			    root = remove(root, n);
+			    root = deletey(root, n);
 			     printf("%d\n", n);
 		    }
 	    }
