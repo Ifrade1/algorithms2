@@ -45,36 +45,37 @@ struct Tree* deletey(struct Tree *tree, int item){
 		tree->left_child = deletey(tree->left_child, item);//key is in the left subtree
 	}
 	else if(item > tree->val){
-		tree->right_child = deletey(tree->right_child, item);//key is in right subtree	
+		tree->right_child = deletey(tree->right_child, item);//key is in right subtree
 	}
 	else{//nodes have the same key
 		if(tree->left_child == NULL && tree->right_child != NULL){//node has 0 children or 1 child
 			struct Tree *temp = tree->right_child;
 			free(tree);
-			return temp;	
+			return temp;
 		}
-		else if(tree->right_child == NULL && (tree->left_child != NULL){
+		else if((tree->right_child == NULL) && (tree->left_child != NULL)){
 		struct Tree *temp = tree->left_child;
 			free(tree);
 			return temp;
 		}
 		struct Tree *min = tree;//get smallest node in right subtree
-		if(min == NULL) return -1;
+		if(min == NULL) { return min;
+		}
 		while(min->right_child != NULL){
 			min = min->right_child;
 		}
 		tree->val = min->val;//copies contents to current node
-		tree->right = deletey(tree->right_child, min->val);//deletes node
+		tree->right_child = deletey(tree->right_child, min->val);//deletes node
 	}
  return tree;
 }//end of delete
- int minimum(struct Tree *tree){
+ struct Tree *minimum(struct Tree *tree){
     struct Tree *min = tree;
-    if (min == NULL) return -1;
+    if (min == NULL) return NULL;
     while(min->left_child != NULL){
         min = min->left_child;
     }
-    return (min->val);
+    return min;
 }
  int maximum(struct Tree *tree){
     struct Tree *max = tree;
@@ -99,7 +100,7 @@ struct Tree * search(struct Tree * leaf, int item) {
 }
 
 //successor function
-int succ(struct Tree *root, struct Tree *succ){
+struct Tree * succ(struct Tree *root, struct Tree *succ){
 	if(succ->right_child != NULL)//successor is the node with the minimum key value in right subtree
 		return minimum(succ->right_child);
 	struct Tree *temp= succ->ide_val;
@@ -111,10 +112,9 @@ int succ(struct Tree *root, struct Tree *succ){
 }
 
 //predecessor function
-//Note: Implement this like the min functions, as 
 struct Tree * pred(struct Tree *tree, int item){
 	if(tree == NULL) return tree;//base case
-	if(tree->val == item){ 
+	if(tree->val == item){
 	struct Tree *pred = tree->left_child;
 	while(pred->right_child)
 		pred = pred->left_child;
@@ -123,6 +123,7 @@ struct Tree * pred(struct Tree *tree, int item){
 	else{
 		tree = pred;
 	}
+	return tree;
 }
 int main() {
      int n; //this is the number that has to be saved into the tree
@@ -147,9 +148,9 @@ int main() {
                         printf("%d\n", n);
                     }
             }
-            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){ 
+            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){
                   if(root == NULL){
-			  root = remove(root, n);
+			  root = deletey(root, n);
 			  printf("%d\n", 0);
 		  }
 		    else if(root != NULL){
@@ -166,9 +167,13 @@ int main() {
                 }
            }
            else if (res == 1 &&(strcmp(str1,"MIN")) == 0){
-               min = minimum(root);
-                printf("%d\n", min);
-           }
+                if (minimum(root)== NULL){
+                    printf("%d\n", 0);
+                }
+                else{
+                    min = minimum(root)->val;
+                    printf("%d\n", min);
+                }
            else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
                 max = maximum(root);
                 printf("%d\n", max);
@@ -180,4 +185,3 @@ int main() {
     }
      return 0;
 }
-
