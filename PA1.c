@@ -98,7 +98,17 @@ struct Tree * search(struct Tree * leaf, int item) {
     return search(leaf->right_child, item);
 }
 
-struct Tree * succ(struct Tree
+//successor function
+struct Tree * succ(struct Tree *root, struct Tree *succ){
+	if(succ->right_child != NULL)//successor is the node with the minimum key value in right subtree
+		return minimum(succ->right_child);
+	struct Tree *temp= succ->ide_val;
+	while(temp !=NULL && succ == temp->right_child){//successor is the node who is the left child of the parent pointer
+		succ = temp;
+		temp = temp->ide_val;
+	}
+	return temp;
+}
 int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
