@@ -112,8 +112,8 @@ struct Tree * succ(struct Tree *root, struct Tree *succ){
 
 //predecessor function
 struct Tree * pred(struct Tree *tree, int item){
-	if(tree == NULL) return;//base case
-	if(tree->val == item){
+	if(tree == NULL) return tree;//base case
+	if(tree->val == item){ 
 	struct Tree *pred = tree->left_child;
 	while(pred->right_child)
 		pred = pred->left_child;
