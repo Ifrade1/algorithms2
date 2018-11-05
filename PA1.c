@@ -111,38 +111,38 @@ int main() {
             if (res == 2 &&(strcmp(str1,"INS")) == 0){
                     if (root == NULL){
                         root = insert(root, n);
-                        printf("%d", n, "/n");
+                        printf("%d\n", n);
                     }
                     else if (root!= NULL){
                         insert(root, n);
-                        printf("%d", n, "/n");
+                        printf("%d\n", n);
                     }
             }
             else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){ 
                   if(root == NULL){
 			  root = remove(root, n);
-			  printf("%d", 0, "/n");
+			  printf("%d\n", 0);
 		  }
 		    else if(root != NULL){
 			    root = remove(root, n);
-			     printf("%d", n, "/n");
+			     printf("%d\n", n);
 		    }
 	    }
            else if (res == 2 &&(strcmp(str1,"SEA")) == 0){
                 if (search(root, n)== NULL){
-                   printf("%d", 0, "/n");
+                   printf("%d\n", 0);
                 }
                 else if (search(root, n) != NULL){
-                     printf("%d", 1, "/n");
+                     printf("%d\n", 1);
                 }
            }
            else if (res == 1 &&(strcmp(str1,"MIN")) == 0){
                min = minimum(root);
-                printf("%d", min);
+                printf("%d\n", min);
            }
            else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
                 max = maximum(root);
-                printf("%d", max, "/n");
+                printf("%d\n", max);
            }
            else if (res == 2 &&(strcmp(str1,"PRE")) == 0){}
            else if (res == 2 &&(strcmp(str1,"SUC")) == 0){}
