@@ -10,8 +10,6 @@
 
 -Write Height function
 
--delete bstfunction file. Kinda unnecessary now
-
 *add else if invalid input (a.e. FIN), spits out error
 
 * Write Makefile!!!!! 
