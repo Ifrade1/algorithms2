@@ -36,6 +36,32 @@ else if (item < tree->val)
     }
 return tree;
  };
+//delete
+struct Tree* remove(struct Tree *tree, int item){
+	if (tree == NULL) return tree;//if the root is empty, return the root
+	if(item < tree->val){
+		tree->left_child = remove(tree->left_child, item);//key is in the left subtree
+	}
+	else if(item > tree->val){
+		tree->right_child = remove(tree->right_child, item);//key is in right subtree	
+	}
+	else{//nodes have the same key
+		if(root->left_child == NULL){//node has 0 children or 1 child
+			struct Tree *temp = tree->right_child;
+			free(tree);
+			return temp;	
+		}
+		else if(root->right_child == NULL){
+		struct Tree *temp = tree->left_child;
+			free(tree);
+			return temp;
+		}
+		struct Tree *temp = minimum(tree->right_child);//get smallest node in right subtree
+		tree->val = temp->val;//copies contents to current node
+		tree->right = remove(tree->right_child, temp->val);//deletes node
+	}
+ return tree;
+}//end of delete
  int minimum(struct Tree *tree){
     struct Tree *min = tree;
     if (min == NULL) return -1;
