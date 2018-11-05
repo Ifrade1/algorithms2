@@ -109,6 +109,20 @@ struct Tree * succ(struct Tree *root, struct Tree *succ){
 	}
 	return temp;
 }
+
+//predecessor function
+struct Tree * pred(struct Tree *tree, int item){
+	if(tree == NULL) return;//base case
+	if(tree->val == item){
+	struct Tree *pred = tree->left_child;
+	while(pred->right_child)
+		pred = pred->left_child;
+		tree = pred;
+	}
+	else{
+		tree = pred;
+	}
+}
 int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
