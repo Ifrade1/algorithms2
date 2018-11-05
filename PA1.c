@@ -48,12 +48,12 @@ struct Tree* deletey(struct Tree *tree, int item){
 		tree->right_child = deletey(tree->right_child, item);//key is in right subtree	
 	}
 	else{//nodes have the same key
-		if(tree->left_child == NULL){//node has 0 children or 1 child
+		if(tree->left_child == NULL && tree->right_child != NULL){//node has 0 children or 1 child
 			struct Tree *temp = tree->right_child;
 			free(tree);
 			return temp;	
 		}
-		else if(tree->right_child == NULL){
+		else if(tree->right_child == NULL && (tree->left_child != NULL){
 		struct Tree *temp = tree->left_child;
 			free(tree);
 			return temp;
