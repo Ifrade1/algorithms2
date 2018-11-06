@@ -118,7 +118,7 @@ struct Tree * search(struct Tree * leaf, int item) {
 }
 
 //successor function
-struct Tree * succ(struct Tree *root, struct Tree *succ){
+struct Tree * succ(struct Tree *root, struct Tree *succ){//segmentation fault after executing command
 	if(succ->right_child != NULL)//successor is the node with the minimum key value in right subtree
 		return minimum(succ->right_child);
 	struct Tree *temp= succ->ide_val;
@@ -131,14 +131,14 @@ struct Tree * succ(struct Tree *root, struct Tree *succ){
 
 //predecessor function
 struct Tree * pred(struct Tree *tree, int item){
-	
+	struct Tree *pred = tree->left_child;// move pred to line 127 then define it
 	if(tree == NULL) return tree;//base case 
 	if(tree->val == item){
-	struct Tree *pred = tree->left_child;// move pred to line 127 then define it
-	while(pred->right_child)
-		pred = pred->left_child;
-		tree = pred;
-	} //MIssing brackets!
+		while(pred->right_child)
+			pred = pred->left_child;
+			tree = pred;
+		}
+	}
 	else{
 		tree = pred;
 	}
@@ -208,7 +208,7 @@ int main() {
                 successor = succ(root, search(root,n))->val;
                 printf("%d\n", successor);
            }
-           else if (res == 1 &(strcmp(str1,"HEI")) == 0){
+           else if (res == 1 &&(strcmp(str1,"HEI")) == 0){
                 heightTree = height(root);
                 printf("%d\n", heightTree);
            }
