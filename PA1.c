@@ -141,6 +141,9 @@ int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
      int max;
+     int heightTree;
+     int predecessor;
+     int successor;
      char str1[50];
     struct Tree *root = NULL;
      int res;
@@ -190,9 +193,18 @@ int main() {
                 max = maximum(root);
                 printf("%d\n", max);
            }
-           else if (res == 2 &&(strcmp(str1,"PRE")) == 0){}
-           else if (res == 2 &&(strcmp(str1,"SUC")) == 0){}
-           else if (res == 1 &(strcmp(str1,"HEI")) == 0){}
+           else if (res == 2 &&(strcmp(str1,"PRE")) == 0){
+                predecessor = pred(root, n)->val;
+                printf("%d\n", predecessor);
+           }
+           else if (res == 2 &&(strcmp(str1,"SUC")) == 0){
+                successor = succ(root, search(root,n))->val;
+                printf("%d\n", successor);
+           }
+           else if (res == 1 &(strcmp(str1,"HEI")) == 0){
+                heightTree = height(root);
+                printf("%d\n", heightTree);
+           }
     }
     }
      return 0;
