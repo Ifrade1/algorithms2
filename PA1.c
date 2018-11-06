@@ -9,14 +9,17 @@ struct Tree
 };
 //insert
 struct Tree *newLeaf(int x){
-        struct Tree *tempy =  malloc(sizeof(struct Tree));
-    tempy->val = x;
-    tempy->left_child = NULL;
-    tempy->right_child = NULL;
-    tempy->ide_val = NULL;
+	struct Tree *tempy =  malloc(sizeof(struct Tree));
+    	tempy->val = x;
+    	tempy->left_child = NULL;
+    	tempy->right_child = NULL;
+    	tempy->ide_val = NULL;
+    	tempy->parent = NULL;
     return tempy;
 }
 struct Tree* insert(struct Tree *tree, int item){
+    struct Tree *lchild = tree;
+    struct Tree *rchild = tree;
     /* If the tree is empty, return a new Node */
 if (tree == NULL){
   return newLeaf(item);
@@ -30,11 +33,15 @@ if (tree == NULL){
   }
 else if (item < tree->val)
     {
-    tree->left_child  = insert(tree->left_child, item);
+    lchild = insert(tree->left_child, item);
+    tree->left_child = lchild;
+    lchild->parent = tree;
     }
     else if (item > tree->val)
     {
-    tree->right_child = insert(tree->right_child, item);
+    rchild = insert(tree->right_child, item);
+    tree->right_child = rchild;
+    rchild->parent = tree;
     }
 return tree;
 }
