@@ -39,7 +39,7 @@ else if (item < tree->val)
 return tree;
 }
 //delete
-struct Tree* deletey(struct Tree *tree, int item){
+struct Tree* deletey(struct Tree *tree, int item){ //just tested this. It's not working properly.
 	if (tree == NULL) return tree;//if the root is empty, return the root
 	if(item < tree->val){
 		tree->left_child = deletey(tree->left_child, item);//key is in the left subtree
