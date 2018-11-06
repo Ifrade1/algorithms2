@@ -69,6 +69,17 @@ struct Tree* deletey(struct Tree *tree, int item){ //just tested this. It's not 
 	}
  return tree;
 }//end of delete
+
+int height(struct Tree* root){
+    if (root == NULL) return -1;
+    else {
+        int Lheight = height(root->left_child);
+        int Rheight = height(root->right_child);
+        if (Lheight > Rheight) return(Lheight+1);
+        else return(Rheight+1);
+    }
+} //end of height
+
  struct Tree *minimum(struct Tree *tree){
     struct Tree *min = tree;
     if (min == NULL) return NULL;
