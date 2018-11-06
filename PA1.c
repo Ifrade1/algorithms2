@@ -150,12 +150,12 @@ int main() {
             }
             else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){
                   if(root == NULL){
-			  root = deletey(root, n);
-			  printf("%d\n", 0);
+			  root = deletey(root, n);//prints node that doesn't exist in BST
+			  printf("%d\n", n);
 		  }
 		    else if(root != NULL){
 			    root = deletey(root, n);
-			     printf("%d\n", n);
+			     printf("%d\n", 0);//node is now empty, 
 		    }
 	    }
            else if (res == 2 &&(strcmp(str1,"SEA")) == 0){
