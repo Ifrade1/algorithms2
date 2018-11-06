@@ -5,7 +5,7 @@
 struct Tree
 {
     int val;
-    struct Tree *left_child, *right_child,*ide_val; //ide_val is pointer list to values identical to it
+    struct Tree *left_child, *right_child,*ide_val, *parent; //ide_val is pointer list to values identical to it
 };
 //insert
 struct Tree *newLeaf(int x){
@@ -124,13 +124,14 @@ struct Tree * succ(struct Tree *root, struct Tree *succ){
 
 //predecessor function
 struct Tree * pred(struct Tree *tree, int item){
-	if(tree == NULL) return tree;//base case
+	
+	if(tree == NULL) return tree;//base case 
 	if(tree->val == item){
-	struct Tree *pred = tree->left_child;
+	struct Tree *pred = tree->left_child;// move pred to line 127 then define it
 	while(pred->right_child)
 		pred = pred->left_child;
 		tree = pred;
-	}
+	} //MIssing brackets!
 	else{
 		tree = pred;
 	}
