@@ -7,7 +7,7 @@
 
 -Write predecessor function
 
--Write successor function
+-Write successor function(there was a segmentation error when SUC was executed)
 
 -Write Height function
 
