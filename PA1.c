@@ -171,6 +171,7 @@ int pred(struct Tree* tree, int item){
             pre = parent_pre;
             parent_pre = parent_pre->parent;
     }
+	    pre = parent_pre;
     }
     return (pre)->val;
 }
