@@ -169,7 +169,7 @@ int pred(struct Tree* tree, int item){
         parent_pre = pre->parent;// find the predecessor of theitem
        while ((parent_pre != NULL) &&(pre == parent_pre->left_child)){
             pre = parent_pre;
-            parent_pre = parent_pre;
+            parent_pre = parent_pre_->parent;
     }
     }
     return (pre)->val;
