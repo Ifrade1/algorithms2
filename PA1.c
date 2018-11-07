@@ -56,7 +56,7 @@ struct Tree *deletey(struct Tree *tree, int item){
 	else if(item > tree->val){
 		tree->right_child = deletey(tree->right_child, item);//key is in right subtree
 	}
-    if (item == tree->val){//nodes have the same key
+    if (item == tree->val){//nodes have the same key Is this supposed to be an else statement?
         parent = tree->parent;
 	    while (temp->ide_val != NULL){
            tree = temp;
