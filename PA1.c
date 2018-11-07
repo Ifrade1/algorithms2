@@ -88,7 +88,7 @@ int deletey(struct Tree *tree, int item){
            tree = temp;
             temp= temp->ide_val;
             free(tree);
-            del_num = del_num++;
+            del_num++;
 	    }
 	    if((tree->left_child)== NULL && (tree->right_child == NULL)){
 	         if ((parent->left_child)->val == (tree)->val){
@@ -151,12 +151,12 @@ int deletey(struct Tree *tree, int item){
 }
 int pred(struct Tree* tree, int item){
     struct Tree *pre = tree;
-    struct Tree* parent_pre = tree;
+    struct Tree *parent_pre = tree;
       pre = search(tree, item);
      if (minimum(tree)->val == item){
         return 0;
         }
-    if(pre = NULL){
+    if(pre == NULL){
         return 0;
     }
     if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
@@ -169,7 +169,7 @@ int pred(struct Tree* tree, int item){
         parent_pre = pre->parent;// find the predecessor of theitem
        while ((parent_pre != NULL) &&(pre == parent_pre->left_child)){
             pre = parent_pre;
-            parent_pre = parent_pre_->parent;
+            parent_pre = parent_pre->parent;
     }
     }
     return (pre)->val;
