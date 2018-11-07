@@ -141,45 +141,78 @@ int deletey(struct Tree *tree, int item){
     }
     return min;
 }
- int maximum(struct Tree *tree){
+ struct Tree *maximum(struct Tree *tree){
     struct Tree *max = tree;
-    if (max == NULL) return -1;
+    if (max == NULL) return NULL;
     while(max->right_child != NULL){
         max = max->right_child;
     }
-    return (max->val);
+    return max;
 }
-
+int pred(struct Tree* tree, int item){
+    struct Tree *pre = tree;
+    struct Tree* parent_pre = tree;
+      pre = search(tree, item);
+     if (minimum(tree)->val == item){
+        return 0;
+        }
+    if(pre = NULL){
+        return 0;
+    }
+    if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
+        return maximum(pre->right_child)->val;
+    }
+    else if (pre->left_child != NULL&& (pre->left_child)->right_child == NULL){
+        return (pre->left_child)->val;
+    }
+    else{
+        parent_pre = pre->parent;// find the predecessor of theitem
+       while ((parent_pre != NULL) &&(pre == parent_pre->left_child)){
+            pre = parent_pre;
+            parent_pre = parent_pre;
+    }
+    }
+    return (pre)->val;
+}
 
 
 //successor function
-struct Tree * succ(struct Tree *root, struct Tree *succ){
-	if(succ->right_child != NULL)//successor is the node with the minimum key value in right subtree
-		return minimum(succ->right_child);
-	struct Tree *temp= succ->ide_val;
-	while(temp !=NULL && succ == temp->right_child){//successor is the node who is the left child of the parent pointer
-		succ = temp;
-		temp = temp->ide_val;
+int succ(struct Tree *tree, int item){
+       struct Tree *suc = tree;
+    suc = search(tree, item);
+    if (suc == NULL){
+        return 0;
+    }
+    if (maximum(tree)->val == item){
+        return 0;
+        }
+	if(suc->right_child != NULL && (suc->right_child)->left_child != NULL){
+            suc= suc->right_child; //successor is the node with the minimum key value in right subtree
+		return (minimum(suc->left_child))->val;
 	}
-	return temp;
+	else if(suc->right_child != NULL && (suc->right_child)->left_child == NULL){
+            suc = suc->right_child; //successor is the node with the minimum key value in right subtree
+            return suc->val;
+	}
+
+	struct Tree *temp= suc->ide_val;
+	if (temp !=NULL) {//successor is the node who is the left child of the parent pointer
+		suc = temp;
+		return suc->val;
+	}
+	else
+    {
+        struct Tree* parent_suc = suc->parent;// find the predecessor of theitem
+        while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
+            suc = parent_suc;
+            parent_suc = parent_suc->parent;
+        }
+        suc = parent_suc;
+    }
+	return suc->val;
 }
 
 //predecessor function
-struct Tree * pred(struct Tree *tree, int item){
-    struct Tree *pred = tree;
-	if(tree == NULL) return tree;//base case
-	if(tree->val == item){
-	 pred = tree->left_child;
-	while(pred->right_child){
-		pred = pred->left_child;
-		tree = pred;
-	}
-	}
-	else{
-		tree = pred;
-	}
-	return tree;
-}
 int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
@@ -234,15 +267,20 @@ int main() {
                 }
            }
            else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
-                max = maximum(root);
-                printf("%d\n", max);
+                 if (maximum(root)== NULL){
+                    printf("%d\n", 0);
+                    }
+                else{
+                    max = maximum(root)->val;
+                    printf("%d\n", max);
+                }
            }
             else if (res == 2 &&(strcmp(str1,"PRE")) == 0){
-                predecessor = pred(root, n)->val;
+                predecessor = pred(root, n);
                 printf("%d\n", predecessor);
            }
            else if (res == 2 &&(strcmp(str1,"SUC")) == 0){
-                successor = succ(root, search(root,n))->val;
+                successor = succ(root, n);
                 printf("%d\n", successor);
            }
            else if (res == 1 &&(strcmp(str1,"HEI")) == 0){
