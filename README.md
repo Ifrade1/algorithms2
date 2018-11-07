@@ -2,9 +2,6 @@
 
 **_Current Priorities: _**
 
--Delete:
-  -take advantage of ->parent. Go to parent, figure out if the deleted value is left or right, and then replace it properly. 
-
 -Write predecessor function
 
 -Write successor function(there was a segmentation error when SUC was executed)
