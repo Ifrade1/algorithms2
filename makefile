@@ -14,5 +14,7 @@
   $(TARGET): $(TARGET).c
 	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
+bst.o:  $(TARGET).c
+	$(CC) $(CFLAGS) -o  $(TARGET).c
  clean:
 	$(RM) $(TARGET)
