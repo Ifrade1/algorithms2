@@ -160,6 +160,7 @@ int pred(struct Tree* tree, int item){
         return 0;
     }
     if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
+	    pre= pre->left_child;
         return maximum(pre->right_child)->val;
     }
     else if (pre->left_child != NULL&& (pre->left_child)->right_child == NULL){
