@@ -121,7 +121,7 @@ int deletey(struct Tree *tree, int item){
             }
 		}
 		else if(tree->right_child != NULL && tree->left_child != NULL){
-            min = tree;
+           	 min = tree->left_child;
 		while(min->right_child != NULL){
 			min = min->right_child;
 		}
