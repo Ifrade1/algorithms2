@@ -102,31 +102,31 @@ int deletey(struct Tree *tree, int item){
 	    }
 		if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->right_child;
+                parent->left_child = tree->right_child, tree->right_child->parent = tree->parent;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->right_child;
+                parent->right_child = tree->right_child, tree->right_child->parent =tree->parent;
                 free(tree);
             }
 		}
 		if((tree->right_child == NULL) && (tree->left_child != NULL)){
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->left_child;
+                parent->left_child = tree->left_child, tree->left_child->parent = tree->parent;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->left_child;
+                parent->right_child = tree->left_child, tree->left_child->parent = tree->parent;
                 free(tree);
             }
 		}
 		else if(tree->right_child != NULL && tree->left_child != NULL){
-           	 min = tree->left_child;
+            min = tree->left_child;
 		while(min->right_child != NULL){
 			min = min->right_child;
 		}
 		tree->val = min->val;//copies contents to current node
-		(min->parent)->right_child = NULL;
+		(min->parent)->right_child = min->left_child;
 		free(min);
 		}
 		}
@@ -160,7 +160,6 @@ int pred(struct Tree* tree, int item){
         return 0;
     }
     if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
-	    pre= pre->left_child;
         return maximum(pre->right_child)->val;
     }
     else if (pre->left_child != NULL&& (pre->left_child)->right_child == NULL){
@@ -172,7 +171,6 @@ int pred(struct Tree* tree, int item){
             pre = parent_pre;
             parent_pre = parent_pre->parent;
     }
-	    pre = parent_pre;
     }
     return (pre)->val;
 }
@@ -204,7 +202,7 @@ int succ(struct Tree *tree, int item){
 	}
 	else
     {
-        struct Tree* parent_suc = suc->parent;// find the predecessor of theitem
+        struct Tree* parent_suc = suc->parent;// find the predecessor of the item
         while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
             suc = parent_suc;
             parent_suc = parent_suc->parent;
