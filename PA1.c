@@ -157,23 +157,17 @@ int pred(struct Tree* tree, int item){
     if(pre == NULL){
         return 0;
     }
-   if (item > tree->val){
-        while (parent_pre->val < item){
+   if (item > parent_pre->val){
+        while (item > parent_pre->val){
             parent_pre = parent_pre->right_child;
-            }
-            return parent_pre->val;
-    }
+            } return parent_pre->parent->val;}
     if (minimum(tree)->val == item){
-        return 0;
-        }
+        return 0;}
     if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
-        return maximum(pre)->val;
-    }
+        return maximum(pre)->val; }
     else if (pre->left_child != NULL&& (pre->left_child)->right_child == NULL){
         return (pre->left_child)->val;
     }
-
-
     return (pre)->val;
 }
 
