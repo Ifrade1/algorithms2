@@ -12,7 +12,7 @@
   all: $(TARGET)
 
   $(TARGET): $(TARGET).c
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c bst.o
+	$(CC) $(CFLAGS) -o bst $(TARGET).c
 
  clean:
 	$(RM) $(TARGET)
