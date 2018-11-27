@@ -100,7 +100,7 @@ int deletey(struct Tree *tree, int item){
                 free(tree);
             }
 	    }
-		if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
+	if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
             if ((parent->left_child)->val == (tree)->val){
                 parent->left_child = tree->right_child;
                 free(tree);
@@ -121,7 +121,7 @@ int deletey(struct Tree *tree, int item){
             }
 		}
 		else if(tree->right_child != NULL && tree->left_child != NULL){
-            min = tree;
+            min = tree->left_child;
 		while(min->right_child != NULL){
 			min = min->right_child;
 		}
