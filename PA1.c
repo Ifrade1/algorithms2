@@ -102,31 +102,31 @@ int deletey(struct Tree *tree, int item){
 	    }
 		if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->right_child, tree->right_child->parent = tree->parent;
+                parent->left_child = tree->right_child;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->right_child, tree->right_child->parent =tree->parent;
+                parent->right_child = tree->right_child;
                 free(tree);
             }
 		}
 		if((tree->right_child == NULL) && (tree->left_child != NULL)){
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->left_child, tree->left_child->parent = tree->parent;
+                parent->left_child = tree->left_child;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->left_child, tree->left_child->parent = tree->parent;
+                parent->right_child = tree->left_child;
                 free(tree);
             }
 		}
 		else if(tree->right_child != NULL && tree->left_child != NULL){
-            min = tree->left_child;
+            min = tree;
 		while(min->right_child != NULL){
 			min = min->right_child;
 		}
 		tree->val = min->val;//copies contents to current node
-		(min->parent)->right_child = min->left_child;
+		(min->parent)->right_child = NULL;
 		free(min);
 		}
 		}
@@ -171,6 +171,7 @@ int pred(struct Tree* tree, int item){
             pre = parent_pre;
             parent_pre = parent_pre->parent;
     }
+    pre = parent_pre;
     }
     return (pre)->val;
 }
@@ -202,7 +203,7 @@ int succ(struct Tree *tree, int item){
 	}
 	else
     {
-        struct Tree* parent_suc = suc->parent;// find the predecessor of the item
+        struct Tree* parent_suc = suc->parent;// find the predecessor of theitem
         while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
             suc = parent_suc;
             parent_suc = parent_suc->parent;
@@ -287,6 +288,19 @@ int main() {
                 heightTree = height(root);
                 printf("%d\n", heightTree);
            }
+           else if (res == 1 &&(strcmp(str1,"KTH")) == 0){
+                if (minimum(root)== NULL){
+                    printf("%d\n", 0);
+                    }
+                else{
+                    min = minimum(root)->val;
+                    for (int i = 0; i < n; i++){
+                         successor = succ(root, min);
+                         min = successor;
+                    }
+                }
+           }
+
     }
     }
      return 0;
