@@ -84,41 +84,28 @@ int deletey(struct Tree *tree, int item){
     if (item == tree->val){//nodes have the same key
         del_num = 1;
         parent = tree->parent;
+	    temp = tree;
 	    while (temp->ide_val != NULL){
-           tree = temp;
-            temp= temp->ide_val;
-            free(tree);
+            tree = temp;
+            free(tree->ide_val);
+             temp= temp->ide_val;
             del_num++;
 	    }
 	    if((tree->left_child)== NULL && (tree->right_child == NULL)){
-	         if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = NULL;
+                 tree= NULL;
                 free(tree);
-                }
-            else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = NULL;
-                free(tree);
-            }
+                return del_num;
 	    }
-	if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
-            if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->right_child;
-                free(tree);
-                }
-            else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->right_child;
-                free(tree);
-            }
+		if((tree->left_child)== NULL && (tree->right_child != NULL)){
+		 temp = tree->right_child;
+		tree->parent->right_child= temp;
+			free(tree);
 		}
-		if((tree->right_child == NULL) && (tree->left_child != NULL)){
-            if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->left_child;
-                free(tree);
-                }
-            else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->left_child;
-                free(tree);
-            }
+		else if((tree->right_child == NULL) && (tree->left_child != NULL)){
+		temp = tree->left_child;
+		tree->parent->left_child = temp;
+			free(tree);
+			return del_num;
 		}
 		else if(tree->right_child != NULL && tree->left_child != NULL){
             min = tree->left_child;
@@ -126,13 +113,12 @@ int deletey(struct Tree *tree, int item){
 			min = min->right_child;
 		}
 		tree->val = min->val;//copies contents to current node
-		(min->parent)->right_child = NULL;
+		(min->parent)->right_child = min->left_child;
 		free(min);
 		}
-		}
+    }
 		 return del_num;
 	}
-
  struct Tree *minimum(struct Tree *tree){
     struct Tree *min = tree;
     if (min == NULL) return NULL;
@@ -153,37 +139,26 @@ int pred(struct Tree* tree, int item){
     struct Tree *pre = tree;
     struct Tree *parent_pre = tree;
       pre = search(tree, item);
-     if (minimum(tree)->val == item){
-        return 0;
-        }
-    if(pre == NULL){
-        return 0;
-    }
+    if(pre == NULL) return 0;
+   if (item > parent_pre->val){
+        while (item > parent_pre->val){
+            parent_pre = parent_pre->right_child;
+            } return parent_pre->parent->val;}
+    if (minimum(tree)->val == item){
+        return 0;}
     if((pre->left_child != NULL)&& (pre->left_child)->right_child != NULL){
-        return maximum(pre->right_child)->val;
-    }
+        return maximum(pre)->val; }
     else if (pre->left_child != NULL&& (pre->left_child)->right_child == NULL){
         return (pre->left_child)->val;
     }
-    else{
-        parent_pre = pre->parent;// find the predecessor of theitem
-       while ((parent_pre != NULL) &&(pre == parent_pre->left_child)){
-            pre = parent_pre;
-            parent_pre = parent_pre->parent;
-    }
-    pre = parent_pre;
-    }
     return (pre)->val;
 }
-
 
 //successor function
 int succ(struct Tree *tree, int item){
        struct Tree *suc = tree;
     suc = search(tree, item);
-    if (suc == NULL){
-        return 0;
-    }
+    if (suc == NULL) return 0;
     if (maximum(tree)->val == item){
         return 0;
         }
@@ -203,7 +178,7 @@ int succ(struct Tree *tree, int item){
 	}
 	else
     {
-        struct Tree* parent_suc = suc->parent;// find the predecessor of theitem
+        struct Tree* parent_suc = suc->parent;// find the predecessor of the item
         while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
             suc = parent_suc;
             parent_suc = parent_suc->parent;
@@ -217,91 +192,35 @@ int succ(struct Tree *tree, int item){
 int main() {
      int n; //this is the number that has to be saved into the tree
      int min;
-     int max;
-     char str1[50];
      int heightTree;
      int predecessor;
      int successor;
-     int numDeletedLeafs;
+     int numInsertions = 0;
     struct Tree *root = NULL;
      int res;
      int err;
+     int k;
     char input[100];
-    while(1) {
-        err = 0;
-        if(fgets(input, sizeof input, stdin) != NULL) {
-            res = sscanf(input, "%19s%d%d%d", str1, &n);
-            if (res == 2 &&(strcmp(str1,"INS")) == 0){
+    scanf("%ld",&k);//scans size of the array and k
+     while(scanf("%d", &n) !=EOF){
+             numInsertions++;
                     if (root == NULL){
                         root = insert(root, n);
-                        printf("%d\n", n);
                     }
                     else if (root!= NULL){
                         insert(root, n);
-                        printf("%d\n", n);
-                    }
-            }
-            else if ((res == 2) &&(strcmp(str1,"DEL")) == 0){
-                  if(root == NULL){
-                    printf("%d\n", 0);
-                    }
-                else if(root != NULL){
-                    numDeletedLeafs = deletey(root, n);
-                    printf("%d\n", numDeletedLeafs);
-		    }
-	    }
-           else if (res == 2 &&(strcmp(str1,"SEA")) == 0){
-                if (search(root, n)== NULL){
-                   printf("%d\n", 0);
-                }
-                else if (search(root, n) != NULL){
-                     printf("%d\n", 1);
-                }
-           }
-           else if (res == 1 &&(strcmp(str1,"MIN")) == 0){
-                if (minimum(root)== NULL){
+                    }}
+           printf("The number of insertions is %d\n", numInsertions);
+           if (minimum(root)== NULL){
                     printf("%d\n", 0);
                     }
                 else{
                     min = minimum(root)->val;
-                    printf("%d\n", min);
-                }
-           }
-           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
-                 if (maximum(root)== NULL){
-                    printf("%d\n", 0);
-                    }
-                else{
-                    max = maximum(root)->val;
-                    printf("%d\n", max);
-                }
-           }
-            else if (res == 2 &&(strcmp(str1,"PRE")) == 0){
-                predecessor = pred(root, n);
-                printf("%d\n", predecessor);
-           }
-           else if (res == 2 &&(strcmp(str1,"SUC")) == 0){
-                successor = succ(root, n);
-                printf("%d\n", successor);
-           }
-           else if (res == 1 &&(strcmp(str1,"HEI")) == 0){
-                heightTree = height(root);
-                printf("%d\n", heightTree);
-           }
-           else if (res == 1 &&(strcmp(str1,"KTH")) == 0){
-                if (minimum(root)== NULL){
-                    printf("%d\n", 0);
-                    }
-                else{
-                    min = minimum(root)->val;
-                    for (int i = 0; i < n; i++){
+                    for (int i = 0; i < k; i++){
                          successor = succ(root, min);
                          min = successor;
                     }
                 }
-           }
-
-    }
-    }
+            printf("%d\n", min);
      return 0;
 };
