@@ -85,8 +85,8 @@ int deletey(struct Tree *tree, int item){
         del_num = 1;
         parent = tree->parent;
 	    while (temp->ide_val != NULL){
-           tree = temp;
             temp= temp->ide_val;
+            tree = temp;
             free(tree);
             del_num++;
 	    }
