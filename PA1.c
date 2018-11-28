@@ -138,9 +138,7 @@ int pred(struct Tree* tree, int item){
     struct Tree *pre = tree;
     struct Tree *parent_pre = tree;
       pre = search(tree, item);
-    if(pre == NULL){
-        return 0;
-    }
+    if(pre == NULL) return 0;
    if (item > parent_pre->val){
         while (item > parent_pre->val){
             parent_pre = parent_pre->right_child;
