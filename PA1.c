@@ -159,9 +159,7 @@ int pred(struct Tree* tree, int item){
 int succ(struct Tree *tree, int item){
        struct Tree *suc = tree;
     suc = search(tree, item);
-    if (suc == NULL){
-        return 0;
-    }
+    if (suc == NULL) return 0;
     if (maximum(tree)->val == item){
         return 0;
         }
