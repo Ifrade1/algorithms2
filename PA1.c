@@ -89,7 +89,6 @@ int deletey(struct Tree *tree, int item){
             free(tree);
             del_num++;
 	    }
-	    return del_num;
 	    if((tree->left_child)== NULL && (tree->right_child == NULL)){
 	         if ((parent->left_child)->val == (tree)->val){
                 parent->left_child = NULL; }
@@ -237,7 +236,8 @@ int main() {
                     printf("%d\n", 0);
                     }
                 else if(root != NULL){
-                    numDeletedLeafs = deletey(root, n);
+                    numDeletedLeafs = deletey(root->right_child, n);
+                    numDeletedLeafs++;//increments number of successful deletes
                     printf("%d\n", numDeletedLeafs);
 		    }
 	    }
@@ -258,7 +258,7 @@ int main() {
                     printf("%d\n", min);
                 }
            }
-           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){INS
+           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
                  if (maximum(root)== NULL){
                     printf("%d\n", 0);
                     }
