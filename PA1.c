@@ -80,18 +80,6 @@ int deletey(struct Tree *tree, int item){
 	else if(item > tree->val){
 		tree= search(tree->right_child, item);//key is in right subtree
         }
-   int deletey(struct Tree *tree, int item){
-       struct Tree *temp = tree;
-       struct Tree *parent = tree;
-       struct Tree *min = tree;//get smallest node in right subtree
-       int del_num;
-        if (tree == NULL) return 0;
-        if(item < tree->val){
-            tree = search(tree->left_child, item);//key is in the left subtree
-        }
-	else if(item > tree->val){
-		tree= search(tree->right_child, item);//key is in right subtree
-        }
     if (item == tree->val){//nodes have the same key
         del_num = 1;
         parent = tree->parent;
@@ -101,47 +89,46 @@ int deletey(struct Tree *tree, int item){
             free(tree);
             del_num++;
 	    }
+	    return del_num;
 	    if((tree->left_child)== NULL && (tree->right_child == NULL)){
 	         if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = NULL;
-                free(tree);
-                }
+                parent->left_child = NULL; }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = NULL;
+                parent->right_child = NULL; }
                 free(tree);
-            }
 	    }
-		if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
+		else if((tree->left_child)== NULL && (tree->right_child != NULL)){//node has 0 children or 1 child
+                tree->right_child->parent = parent;
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->right_child, tree->right_child->parent = tree->parent;
+                parent->left_child = tree->right_child;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->right_child, tree->right_child->parent =tree->parent;
+                parent->right_child = tree->right_child;
                 free(tree);
             }
 		}
-		if((tree->right_child == NULL) && (tree->left_child != NULL)){
+		else if((tree->right_child == NULL) && (tree->left_child != NULL)){
+                 tree->left_child->parent = tree->parent;
             if ((parent->left_child)->val == (tree)->val){
-                parent->left_child = tree->left_child, tree->left_child->parent = tree->parent;
+                parent->left_child = tree->left_child;
                 free(tree);
                 }
             else if ((parent->right_child)->val == (tree)->val){
-                parent->right_child = tree->left_child, tree->left_child->parent = tree->parent;
+                parent->right_child = tree->left_child;
                 free(tree);
             }
 		}
-		else if(tree->right_child != NULL && tree->left_child != NULL){
-            min = tree->left_child;
-		while(min->right_child != NULL){
-			min = min->right_child;
+        if(tree->right_child != NULL && tree->left_child != NULL){
+            min = tree;
+		while(min->left_child != NULL){
+			min = min->left_child;
 		}
 		tree->val = min->val;//copies contents to current node
-		(min->parent)->right_child = NULL;
-		free(min);
-		}
-		}
-		 return del_num;
+		(min->parent)->left_child = NULL;
+		free(min); }
+    }
+    return del_num;
 	}
 
  struct Tree *minimum(struct Tree *tree){
@@ -250,8 +237,7 @@ int main() {
                     printf("%d\n", 0);
                     }
                 else if(root != NULL){
-                    numDeletedLeafs = deletey(root->right_child, n);
-                    numDeletedLeafs++;//increments number of successful deletes
+                    numDeletedLeafs = deletey(root, n);
                     printf("%d\n", numDeletedLeafs);
 		    }
 	    }
@@ -272,7 +258,7 @@ int main() {
                     printf("%d\n", min);
                 }
            }
-           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){
+           else if (res == 1 &&(strcmp(str1,"MAX")) == 0){INS
                  if (maximum(root)== NULL){
                     printf("%d\n", 0);
                     }
