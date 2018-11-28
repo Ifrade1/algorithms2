@@ -236,8 +236,7 @@ int main() {
                     printf("%d\n", 0);
                     }
                 else if(root != NULL){
-                    numDeletedLeafs = deletey(root->right_child, n);
-                    numDeletedLeafs++;//increments number of successful deletes
+                    numDeletedLeafs = deletey(root, n);
                     printf("%d\n", numDeletedLeafs);
 		    }
 	    }
