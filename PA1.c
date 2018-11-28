@@ -84,6 +84,7 @@ int deletey(struct Tree *tree, int item){
     if (item == tree->val){//nodes have the same key
         del_num = 1;
         parent = tree->parent;
+	    temp = tree;
 	    while (temp->ide_val != NULL){
             tree = temp;
             free(tree->ide_val);
