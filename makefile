@@ -7,12 +7,12 @@
   CFLAGS  = -g -Wall
 
   # the build target executable:
-  TARGET = PA1
+  TARGET = bst
 
   all: $(TARGET)
 
   $(TARGET): $(TARGET).c
-	$(CC) $(CFLAGS) -o bst $(TARGET).c
+	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
  clean:
 	$(RM) $(TARGET)
