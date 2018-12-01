@@ -170,9 +170,10 @@ int main() {
 		    printf("%d\n", min);
 		     for (int i = 0; i < k; i++){
 		       successor = succ(root, min);
+		       //printf("%d\n", successor);//print statement for testing out successor
 		       min = successor;
 		    }
 		    }
-            printf("%d\n", min);
+            printf("%d\n", min);//print out the the kth smallest integer
      return 0;
     };
