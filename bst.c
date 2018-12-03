@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <time.h>
 struct Tree
 {
     int val;
@@ -139,36 +140,10 @@ int succ(struct Tree *tree, int item){
     }
 	return suc->val;
 }
-int succ2(struct Tree *root, int item){
-    struct Tree *leaf = search(root, item);
-     struct Tree *successor = NULL;
-    struct Tree *current  = root;
-    while(current->val != leaf->val){
-        /* If node value is greater than the node which are looking for, then go to left sub tree
-        Also when we move left, update the successor pointer to keep track of lst left turn */
-        if(current->val > leaf->val){
-            successor = current;
-            current= current->left_child;
-        }
-        /* Else take right turn and no need to update successor pointer */
-        else
-            current = (current->right_child);
-    }
-    /*Once we reached at the node for which inorder successor is to be found,
-    check if it has right sub tree, if yes then find the minimum in that right sub tree and return taht node
-    Else last left turn taken node is already stored in successor pointer and will be returned*/
-  if(leaf->right_child != NULL){
-            successor= leaf->right_child; //successor is the node with the minimum key value in right subtree
-            if (successor->left_child != NULL){
-                return minimum(successor)->val;
-            }
-            return successor->val;
-            }
-
-    return successor->val;
-}
 //predecessor function
 int main() {
+clock_t starttime, endtime;
+  double execution_time;
      int n; //this is the number that has to be saved into the tree
      int min;
      int heightTree;
@@ -178,7 +153,7 @@ int main() {
     struct Tree *root = NULL;
      int k;
      int i;
-    char input[100];
+     starttime = clock();
     scanf("%d/n",&k);//scans size of the array and k
      while(scanf("%d", &n) !=EOF){
              numInsertions++;
@@ -196,12 +171,15 @@ int main() {
                     min = minimum(root)->val;
                     printf("min is %d\n", min);
                     for (int i = 0; i < k; i++){
-                        printf("testx %d\n", min);
+                      //  printf("testx %d\n", min);
                          successor = succ(root, min);
                          min = successor;
-                         printf("testy %d\n", min);
+                       //  printf("testy %d\n", min);
                    }
                      printf("kmin is %d\n", min);
+                      endtime = clock();
+  execution_time = ((double)(endtime - starttime))/ CLOCKS_PER_SEC;
+  printf("BST execution time: %lf seconds \n", execution_time);
                 }
      return 0;
 };
